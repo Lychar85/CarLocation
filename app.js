@@ -23,10 +23,12 @@ app.use(express.urlencoded({
 
 
 // Routes------------------------------------------------------------
-const home = require('./routes/home')
-
+const home = require('./routes/home'),
+        user = require('./routes/user')
 
 app.use('/',home)
+
+app.use('/user', user)
 //
 
 
