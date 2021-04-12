@@ -3,8 +3,8 @@ const
     express = require('express'),
     app = express();
 
-    const methodOverride = require('method-override');
-
+    const methodOverride = require('method-override'),
+    path = require('path');
 //-----
 
 
@@ -13,6 +13,10 @@ app.use(methodOverride('_method'))
 // EJS-----------------------------------------------------
 app.set('view engine', 'ejs');
 //----
+
+// Static folder--------------------------------------------
+app.use(express.static(path.join(__dirname, 'public')));
+//-----
 
 // Middleware - BodyParser--------------------------------------------
 app.use(express.json())
