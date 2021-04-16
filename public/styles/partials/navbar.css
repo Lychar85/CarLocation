@@ -20,6 +20,7 @@
 .navigation-wrap{
 	position: fixed;
     background: #143a66;
+	/*opacity: 95%;*/
 	width: 100%;
 	top: 0;
 	left: 0;
