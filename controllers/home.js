@@ -1,4 +1,6 @@
 
 exports.homeGet = async (req, res) => {
-      res.render('home');
+      const marque = await querysql('SELECT name from marque')
+
+      res.render('home', {marque});
    };

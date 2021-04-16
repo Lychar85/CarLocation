@@ -5,6 +5,30 @@ const
 
     const methodOverride = require('method-override'),
     path = require('path');
+
+    const mysql = require('mysql'),
+    util = require('util');
+//-----
+
+// Mysql--------------------------------------------
+require('dotenv').config()
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
+})
+db.connect(
+    (err) => {
+        if (err) {
+            throw err
+        } else console.log('connect to server mysql')
+    }
+)
+
+// DECLARE LA VARIABLE GLOBALE QUERY SQL
+global.querysql = util.promisify(db.query).bind(db)
 //-----
 
 
