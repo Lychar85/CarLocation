@@ -3,9 +3,11 @@
 @import './partials/navbar.css';
 @import './partials/footer.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 
 body{
+    font-family: 'Questrial', sans-serif;
     font-size: 17px;
     padding: 0;
     margin: 0;
