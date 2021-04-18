@@ -122,7 +122,7 @@
 	color: #ffffff;
 	background-color: #143a66;
 	border: none;
-	border-radius: 3px;
+	border-radius: 10px;
 	box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
     transition: all 200ms linear;
 }
