@@ -1,4 +1,4 @@
-//navigation
+//navigation---------------------------------------------------
 (function($) { "use strict";
 
 $(function() {
@@ -22,4 +22,6 @@ $('body').on('mouseenter mouseleave','.nav-item',function(e){
             },1);
         }
 });	
-})(jQuery); 
+})(jQuery);
+
+//Carousel home---------------------------------------------------------------
