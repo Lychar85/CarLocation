@@ -1,4 +1,6 @@
 @import './home.css';
+@import './admin.css';
+
 @import './partials/header.css';
 @import './partials/navbar.css';
 @import './partials/footer.css';

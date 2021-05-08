@@ -52,11 +52,15 @@ app.use(express.urlencoded({
 
 // Routes------------------------------------------------------------
 const home = require('./routes/home'),
-        user = require('./routes/user')
+      user = require('./routes/user'),
+
+      admin = require('./routes/admin')
 
 app.use('/',home)
 
 app.use('/user', user)
+
+app.use('/admin',  admin)
 //
 
 
