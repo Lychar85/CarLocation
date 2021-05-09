@@ -1,0 +1,62 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+
+<%- include('partials/navbarAdmin.ejs') %> 
+
+
+<div class="container formulaireCar">
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Marque</label>
+            <select class="form-control form-control-sm">
+                <% marque.forEach(marque => { %>
+                <option value="<%= marque.marque_id %> "><%= marque.marque_name %> </option>
+                <% }) %>
+              </select>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Modèle</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modèle" name="name">
+          </div>
+        
+
+</div>
+
+
+<div class="container listvoiture">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">immatriculation</th>
+            <th scope="col">marque</th>
+            <th scope="col">modèle</th>
+            <th scope="col">finition</th>
+            <th scope="col">motorisation</th>
+            <th scope="col">boite</th>
+            <th scope="col">énergie</th>
+            <th scope="col">prix</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            <% car.forEach(car => { %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= car.immatriculation %> </td>
+            <td><%= car.marque_name %> </td>
+            <td><%= car.name %></td>
+            <td><%= car.finition %> </td>
+            <td><%= car.motorisation %></td>
+            <td><%= car.boite %></td>
+            <td><%= car.energie %> </td>
+            <td><%= car.prix %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+</div>
+
+
+
+<%- include('partials/footer.ejs') %>

@@ -1,6 +1,6 @@
+/*page Accueil-------------------------*/
 .accueilAdmin{
-    margin: 30px 0 0 100px;
-    width: 100%;
+    margin: 30px 0 0 190px;
 }
 
 .statAccueil{
@@ -10,16 +10,56 @@
 }
 
 .stats{
-    height: 200px;
+    text-align: center;
+    height: 150px;
     width: 350px;
+    border-radius: 25px;
+    color: #ffffff;
 }
 
 .numberVisitor{
-    background: red;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,255,3,1) 100%);
+    transition-duration: 500ms;
 }
+.numberVisitor:hover{
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,46,30,1) 0%, rgba(2,73,26,1) 16%, rgba(2,75,26,1) 17%, rgba(0,255,3,1) 100%);
+    transition-duration: 500ms;
+}
+
 .numberbenef{
-    background: blue;
+    background: rgb(2,0,36);
+    background: linear-gradient(120deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
+    transition-duration: 500ms;
 }
+.numberbenef:hover{
+    background: rgb(2,0,36);
+    background: linear-gradient(210deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
+    transition-duration: 500ms;
+}
+
 .numbervente{
-    background: green;
+    background: rgb(255,0,0);
+    background: linear-gradient(320deg, rgba(255,0,0,1) 40%, rgba(0,0,0,1) 100%);
+    transition-duration: 500ms;
 }
+.numbervente:hover{
+    background: rgb(255,0,0);
+    background: linear-gradient(115deg, rgba(255,0,0,1) 40%, rgba(0,0,0,1) 100%);
+    transition-duration: 500ms;
+}
+
+/*page ajout voiture-------------------*/
+.formulaireCar{
+    margin: 50px 0 100px 300px ;
+}
+
+
+.listvoiture{
+    margin-left: 200px;
+    font-size: 60%;
+}
+
+
+
