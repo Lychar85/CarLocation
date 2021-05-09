@@ -1,0 +1,233 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+create database location;
+use location;
+#------------------------------------------------------------
+# Table: user
+#------------------------------------------------------------
+
+
+CREATE TABLE user(
+        user_id     Int  Auto_increment  NOT NULL ,
+        email       Varchar (50) NOT NULL ,
+        password    Varchar (60) NOT NULL ,
+        first_name  Varchar (255) NOT NULL ,
+        last_name   Varchar (255) NOT NULL ,
+        age         Date NOT NULL ,
+        country     Varchar (255) NOT NULL ,
+        city        Varchar (255) NOT NULL ,
+        address     Varchar (255) NOT NULL ,
+        postal_code Varchar (5) NOT NULL
+	,CONSTRAINT user_PK PRIMARY KEY (user_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+INSERT INTO user (email ,password ,first_name ,last_name ,age ,country ,city ,address ,postal_code)
+VALUES ("lychar85@gmail.com" ,  "azerty" , "charly" , "cc" , 19990825 , "france" , "antibes" , "45 rue mes couilles" , 06140);
+UPDATE user SET postal_code = '06140' WHERE user_id = 1;
+SELECT * FROM  user;
+
+#----------
+
+#------------------------------------------------------------
+# Table: information
+#------------------------------------------------------------
+
+CREATE TABLE information(
+        first_name  Varchar (255) NOT NULL ,
+        last_name   Varchar (255) NOT NULL ,
+        age         Date NOT NULL ,
+        country     Varchar (255) NOT NULL ,
+        city        Varchar (255) NOT NULL ,
+        address     Varchar (255) NOT NULL ,
+        postal_code Varchar (5) NOT NULL
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: admin
+#------------------------------------------------------------
+
+CREATE TABLE admin(
+        admin_id   Int  Auto_increment  NOT NULL ,
+        first_name Varchar (255) NOT NULL ,
+        last_name  Varchar (255) NOT NULL ,
+        email      Varchar (255) NOT NULL ,
+        code_admin Int NOT NULL
+	,CONSTRAINT admin_PK PRIMARY KEY (admin_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+INSERT INTO admin (first_name ,last_name ,email ,code_admin) VALUES ("charly" , "cc" , "lychar85@gmail.com" , 529980);
+UPDATE admin SET last_name = "c" WHERE admin_id;
+SELECT * FROM admin;
+#----------
+
+#------------------------------------------------------------
+# Table: marque
+#------------------------------------------------------------
+
+CREATE TABLE marque(
+        marque_id Int  Auto_increment  NOT NULL ,
+        marque_name      Varchar (45) NOT NULL ,
+        pays      Varchar (45) NOT NULL ,
+        logo	  Varchar (255) NOT NULL ,
+	CONSTRAINT marque_PK PRIMARY KEY (marque_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+INSERT INTO marque (marque_name ,pays ,logo) VALUES ("mercedes" , "allemagne" , "");
+UPDATE marque SET logo = "" WHERE marque_id = 3;
+SELECT * FROM marque;
+
+#----------
+
+#------------------------------------------------------------
+# Table: modele
+#------------------------------------------------------------
+
+CREATE TABLE modele(
+        modele_id     Int  Auto_increment  NOT NULL ,
+        name           Varchar (45) NOT NULL ,
+        date_lancement Date NOT NULL ,
+        serie        Varchar (45) NULL ,
+        carroserie   Varchar (45) NOT NULL ,
+        energie      Varchar (45) NOT NULL ,
+        boite        Varchar (45) NOT NULL ,
+        poids        Varchar (45) NOT NULL ,
+        longueur     Varchar (45) NULL ,
+        largeur      Varchar (45) NULL ,
+        portes       Varchar (45) NOT NULL ,
+        motorisation Varchar (45) NOT NULL ,
+        finition     Varchar (45) NOT NULL ,
+        image		 VARCHAR(255) NOT NULL ,
+        marque_id    Int NOT NULL
+	,CONSTRAINT modele_PK PRIMARY KEY (modele_id)
+
+	,CONSTRAINT modele_marque_FK FOREIGN KEY (marque_id) REFERENCES marque(marque_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+INSERT INTO serie (serie, carroserie, energie, boite, poids, longueur, largeur, portes, motorisation, finition, image, modele_id)
+VALUES ('', 'berline', 'diesel', 'automatique', '2150', '', '', '5', '4 matic', 'bisness', "", 1);
+UPDATE serie SET image = '' WHERE modele_id = 1;
+SELECT * FROM serie;
+
+#----------
+
+#------------------------------------------------------------
+# Table: car
+#------------------------------------------------------------
+
+CREATE TABLE car(
+        car_id          Int  Auto_increment  NOT NULL ,
+        prix 			Int NOT NULL ,
+        immatriculation Varchar (10) NOT NULL ,
+        couleur         Varchar (45) NOT NULL ,
+        disponible		TinyInt NOT NULL ,
+        modele_id        Int NOT NULL
+	,CONSTRAINT car_PK PRIMARY KEY (car_id)
+
+	,CONSTRAINT car_modele_FK FOREIGN KEY (modele_id) REFERENCES modele(modele_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+INSERT INTO car (prix, immatriculation, couleur, serie_id) VALUES (166500,'725-db-85', 'blanc', 1);
+UPDATE car SET couleur = 'noir' WHERE serie_id = 1;
+SELECT * FROM car;
+
+#----------
+
+#------------------------------------------------------------
+# Table: achat
+#------------------------------------------------------------
+
+CREATE TABLE achat(
+        achat_id Int  Auto_increment  NOT NULL ,
+        car_id   Int NOT NULL ,
+        user_id  Int NOT NULL 
+	,CONSTRAINT achat_PK PRIMARY KEY (achat_id)
+
+	,CONSTRAINT achat_car_FK FOREIGN KEY (car_id) REFERENCES car(car_id)
+	,CONSTRAINT achat_user0_FK FOREIGN KEY (user_id) REFERENCES user(user_id)
+	,CONSTRAINT achat_car_AK UNIQUE (car_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+
+INSERT INTO achat (prix, car_id, user_id) VALUES (164000, 1, 1);
+UPDATE achat SET prix = 167540 WHERE achat_id = 1;
+SELECT * FROM achat;
+
+#----------
+
+#------------------------------------------------------------
+# Table: essai
+#------------------------------------------------------------
+
+CREATE TABLE essai(
+        essai_id Int  Auto_increment  NOT NULL ,
+        date     Datetime NOT NULL ,
+        user_id  Int NOT NULL ,
+        car_id   Int NOT NULL
+	,CONSTRAINT essai_PK PRIMARY KEY (essai_id)
+
+	,CONSTRAINT essai_user_FK FOREIGN KEY (user_id) REFERENCES user(user_id)
+	,CONSTRAINT essai_car0_FK FOREIGN KEY (car_id) REFERENCES car(car_id)
+	,CONSTRAINT essai_car_AK UNIQUE (car_id)
+)ENGINE=InnoDB;
+
+# REQUETE SQL----------
+INSERT INTO essai (date, car_id, user_id) VALUES ('2021-02-12 14-30-00', 1, 1);
+UPDATE essai SET date = '2021-02-12 16-30-00' WHERE essai_id = 1;
+SELECT * FROM essai;
+
+#----------
+
+#------------------------------------------------------------
+# requete sql Jointure
+#------------------------------------------------------------
+
+#Voiture
+SELECT *
+FROM car 
+INNER JOIN modele ON car.modele_id = modele.modele_id
+INNER JOIN marque ON modele.marque_id = marque.marque_id;
+
+#essai
+SELECT *
+FROM user
+INNER JOIN essai ON essai.user_id = 1;
+
+SELECT *
+FROM user
+INNER JOIN achat ON achat.user_id = 1;
+#----------
+
+# toute les requete requete
+
+INSERT INTO user (email,password) VALUES ("lychar85@gmail.com","azerty");
+UPDATE user SET email = "lychar85@gmail.com" WHERE user_id = 1;
+SELECT * FROM  user;
+
+INSERT INTO marque (marque_name ,pays ,logo) VALUES ("tesla" , "américain " , "");
+UPDATE marque SET marque_name = "ferrari" WHERE marque_id = 3;
+SELECT * FROM marque;
+
+INSERT INTO modele (name, date_lancement, serie, carroserie, energie, boite, poids, longueur, largeur, portes, motorisation, finition, image, marque_id)
+VALUES ('class c',12/01/2021,'', 'berline', 'essence', 'automatique', '1750', '', '', '5', '4matic', 'amg ', "", 1);
+UPDATE serie SET serie = '2021' WHERE modele_id = 1;
+SELECT * FROM modele;
+
+INSERT INTO car (prix, immatriculation, couleur, disponible, modele_id) VALUES (120000,'bt-640-am', 'noir', 0, 3);
+UPDATE car SET serie_id = 3 WHERE car = 3;
+SELECT * FROM car;
+
+INSERT INTO achat (car_id, user_id) VALUES (2, 1);
+UPDATE achat SET prix = 167540 WHERE achat_id = 1;
+SELECT * FROM achat;
+
+INSERT INTO essai (date, car_id, user_id) VALUES ('2021-02-12 14-30-00', 1, 1);
+UPDATE essai SET date = '2021-02-12 16-30-00' WHERE essai_id = 1;
+SELECT * FROM essai;
