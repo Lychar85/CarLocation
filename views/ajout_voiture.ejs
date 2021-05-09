@@ -1,62 +1,140 @@
 <%- include('partials/head.ejs') %>
-<%- include('partials/header.ejs') %>
+  <%- include('partials/header.ejs') %>
 
-<%- include('partials/navbarAdmin.ejs') %> 
+    <%- include('partials/navbarAdmin.ejs') %>
 
 
-<div class="container formulaireCar">
-    <form>
-        <div class="form-group">
+      <div class="container formulaireCar">
+        <form action="/admin/addcar" enctype="multipart/form-data" method="POST">
+          <div class="form-group">
             <label for="exampleFormControlSelect1">Marque</label>
             <select class="form-control form-control-sm">
-                <% marque.forEach(marque => { %>
-                <option value="<%= marque.marque_id %> "><%= marque.marque_name %> </option>
+              <% marque.forEach(marque=> { %>
+                <option value="<%= marque.marque_id %>">
+                  <%= marque.marque_name %>
+                </option>
                 <% }) %>
-              </select>
-        </div>
-        <div class="form-group">
+            </select>
+          </div>
+          <div class="form-group">
             <label for="formGroupExampleInput">Modèle</label>
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modèle" name="name">
           </div>
-        
+          <div class="form-group">
+            <label for="formGroupExampleInput">Modèle</label>
+            <input type="date" class="form-control" id="formGroupExampleInput" placeholder="Modèle" name="date_lancement">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">carroserie</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="exemple : berline"
+              name="carroserie">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">énergie</label>
+            <select name="energie" class="form-control form-control-sm">
+              <option value="essence"> essence </option>
+              <option value="diesel"> diesel </option>
+              <option value="électrique"> électrique </option>
+              <option value="hybride"> hybride </option>
+              <option value="bioéthanol"> bioéthanol </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">boite</label>
+            <select name="boite" class="form-control form-control-sm">
+              <option value="essence"> manuelle </option>
+              <option value="diesel"> automatique </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">longueur</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modèle" name="longueur">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">largeur</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modèle" name="largeur">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">nombre de porte</label>
+            <select name="porte" class="form-control form-control-sm">
+              <option value="2"> 2 portes </option>
+              <option value="5"> 5 portes </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">motorisation</label>
+            <select name="motorisation" class="form-control form-control-sm">
+              <option value="traction"> traction </option>
+              <option value="propulsion"> propulsion </option>
+              <option value="4 roue motrice"> 4 roue motrice </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">finition</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="exemple AMG"
+              name="finition">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">image</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modèle" name="image">
+          </div>
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
 
-</div>
+
+      </div>
 
 
-<div class="container listvoiture">
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">immatriculation</th>
-            <th scope="col">marque</th>
-            <th scope="col">modèle</th>
-            <th scope="col">finition</th>
-            <th scope="col">motorisation</th>
-            <th scope="col">boite</th>
-            <th scope="col">énergie</th>
-            <th scope="col">prix</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="container listvoiture">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">immatriculation</th>
+              <th scope="col">marque</th>
+              <th scope="col">modèle</th>
+              <th scope="col">finition</th>
+              <th scope="col">motorisation</th>
+              <th scope="col">boite</th>
+              <th scope="col">énergie</th>
+              <th scope="col">prix</th>
+            </tr>
+          </thead>
+          <tbody>
 
-            <% car.forEach(car => { %>
-          <tr>
-            <th scope="row">1</th>
-            <td><%= car.immatriculation %> </td>
-            <td><%= car.marque_name %> </td>
-            <td><%= car.name %></td>
-            <td><%= car.finition %> </td>
-            <td><%= car.motorisation %></td>
-            <td><%= car.boite %></td>
-            <td><%= car.energie %> </td>
-            <td><%= car.prix %></td>
-          </tr>
-          <% }) %>
-        </tbody>
-      </table>
-</div>
+            <% car.forEach(car=> { %>
+              <tr>
+                <th scope="row">1</th>
+                <td>
+                  <%= car.immatriculation %>
+                </td>
+                <td>
+                  <%= car.marque_name %>
+                </td>
+                <td>
+                  <%= car.name %>
+                </td>
+                <td>
+                  <%= car.finition %>
+                </td>
+                <td>
+                  <%= car.motorisation %>
+                </td>
+                <td>
+                  <%= car.boite %>
+                </td>
+                <td>
+                  <%= car.energie %>
+                </td>
+                <td>
+                  <%= car.prix %>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
 
 
 
-<%- include('partials/footer.ejs') %>
+      <%- include('partials/footer.ejs') %>
