@@ -11,7 +11,7 @@ exports.getaddcar = async (req, res) => {
     const marque = await querysql('SELECT ??, ?? FROM marque;',
         ["marque_name", "marque_id"])
 
-    const modele = await querysql("SELECT ??,??,??,??,??,??,??,??,??,??,??,??,??,??, from modele;",
+    const modele = await querysql("SELECT ??,??,??,??,??,??,??,??,??,??,??,??,??,?? from modele",
     ["name", "date_lancement", "serie", "carroserie", "energie", "boite", "poids", "longueur", "largeur", "portes", "motorisation", "finition", "image", "marque_id"])
 
     const car = await querysql('SELECT * FROM car INNER JOIN modele ON car.modele_id = modele.modele_id INNER JOIN marque ON modele.marque_id = marque.marque_id')
