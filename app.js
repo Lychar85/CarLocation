@@ -7,6 +7,8 @@ const
     path = require('path');
 
     const mysql = require('mysql'),
+    session = require('express-session'),
+    MySQLStore = require('express-mysql-session'),
     util = require('util');
 //-----
 
@@ -26,6 +28,21 @@ db.connect(
         } else console.log('connect to server mysql')
     }
 )
+
+//Express sessionMysql
+const sessionStore = new MySQLStore({}, db)
+
+//express session
+app.use(session({
+    name: 'biscuit',
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore,
+    cookie: { 
+      maxAge: 1000 * 60 * 60 * 24 //24 heures
+     }
+  }))
 
 // DECLARE LA VARIABLE GLOBALE QUERY SQL
 global.querysql = util.promisify(db.query).bind(db)

@@ -3,6 +3,8 @@ const router = require('express').Router(),
         profilController =require('../controllers/profil')
 
 router.get('/login', userController.loginGet)
+router.post('/login', userController.loginpost)
+
 
 router.get('/register', userController.registerGet)
 
